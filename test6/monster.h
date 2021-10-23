@@ -6,7 +6,7 @@ typedef struct _MONS
 {
     int x, y;
     bool monlife = false;
-    int dirx = 0,diry = 0;
+    int dirx = 1,diry = 0;
 }MONS;
 
 extern MONS m[6];

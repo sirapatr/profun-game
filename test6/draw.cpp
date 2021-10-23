@@ -2,15 +2,14 @@
 #include "map.h"
 #include "score.h"
 
+
 //player
-void Del_player(int x, int y) {
-    map[y][x] = ' ';
+void Del_player(int x, int y) { 
     gotoxy(x, y);
     printf(" ");
 }
 
 void draw_player(int x, int y) {
-    map[y][x] = 'P';
     gotoxy(x, y);
     printf("P");
 }
@@ -19,7 +18,9 @@ void draw_player(int x, int y) {
 void draw_mon(int x, int y) {
     map[y][x] = 'M';
     gotoxy(x, y);
+    setcolor(2, 0);
     printf("M");
+    setcolor(7, 0);
 }
 
 void del_mon(int x, int y) {
@@ -94,6 +95,8 @@ void draw_Time(int Time) {
     gotoxy(si, sj);
     printf("Time %03d", Time / 10);
 }
+
+//scoreboard
 
 void Darw_scoreboard() {
     gotoxy(43, 7);

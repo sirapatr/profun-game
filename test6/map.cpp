@@ -1,7 +1,6 @@
 #include "fuc.h"
+#include "map.h"
 
-#define ROW 22
-#define COL 92
 char map[ROW][COL];
 
 void readMap(char *filename) {

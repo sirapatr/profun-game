@@ -73,12 +73,11 @@ int main()
             draw_food();
             draw_score(a);
             draw_Time(Time);
-            //spawn_monster();
+            spawn_monster();
 
             do {
                 if (_kbhit()) {
                     ch = _getch();
-
 
                     if (ch == 'w' && map[y - 1][x] != '#') {
                         Del_player(x, y); draw_player(x, --y);
@@ -95,7 +94,7 @@ int main()
                     if (ch == 'd' && map[y][x + 1] != '#') {
                         Del_player(x, y); draw_player(++x, y);
                     }
-
+                    fflush(stdin);
                     if (map[y][x] == 'O') {
                         a++;
                         Time += 100;
@@ -104,8 +103,16 @@ int main()
                         exfood(a);
                         draw_score(a);
                     }
-                    fflush(stdin);
+
+                    
+
                 }
+                if (map[y][x] != 'M') {
+                    for (int i = 0; i < 5; i++) {
+                        mon_move(i, x, y);
+                    }
+                }
+                else { Time = 0; }
                 Sleep(100);
                 Time--;
                 draw_Time(Time);
