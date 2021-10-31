@@ -16,6 +16,19 @@ void scoreboard()
     
 }
 
+void scoreboardwrite()
+{
+
+    FILE* fp;
+    int r = 0;
+    fp = fopen("scoreboard.txt", "w");
+    for (int r = 0; r < 5;r++) {
+        fprintf(fp, "%s %d\n", ra[r].name, ra[r].point);
+    }
+    fclose(fp);
+
+}
+
 void rerankscore() {
     int point;
     char name[50];

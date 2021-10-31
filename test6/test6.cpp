@@ -67,10 +67,12 @@ int main()
     
         //gameplay
         while (play) {
-            int x = 1, y = 1, a = 0, Time = 300;
+            int x = 1, y = 1, a = 0, Time = 300, foodcount = 10;
             make_map();
             draw_player(x, y);
-            draw_food();
+            for (int i = 1; i <= foodcount; i++) {
+                draw_food();
+            }
             draw_score(a);
             draw_Time(Time);
             spawn_monster();
@@ -94,23 +96,48 @@ int main()
                     if (ch == 'd' && map[y][x + 1] != '#') {
                         Del_player(x, y); draw_player(++x, y);
                     }
+                    if (ch == 'e' && w[0].have) {
+                        draw_wall(0, x, y);
+                    }
                     fflush(stdin);
                     if (map[y][x] == 'O') {
                         a++;
+                        re_wall(0,a);
                         Time += 100;
                         map[y][x] = ' ';
-                        draw_food();
+                        if (a % 10 == 0 && foodcount > 1 ) {
+                            foodcount--;
+                        }
+                        else {
+                            draw_food();
+                        }
                         exfood(a);
+                        if (w[0].isUse) {
+                            del_wall(0);
+                        }
                         draw_score(a);
                     }
 
-                    
+                    if (map[y][x] == 'D') {
+                        foodcount++;
+                        map[y][x] = ' ';
+                        draw_food();
+                    }
+
+                    if (map[y][x] == 'R') {
+                        w[0].have = true;
+                    }
 
                 }
                 if (map[y][x] != 'M') {
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < 3; i++) {
+                        setcolor(2, 0);
                         mon_move(i, x, y);
                     }
+                    setcolor(4, 0);
+                    mon_moveTolmY(3, x, y);
+                    setcolor(4, 0);
+                    mon_moveTolmY(4, x, y);
                 }
                 else { Time = 0; }
                 Sleep(100);
@@ -120,10 +147,12 @@ int main()
 
             } while (ch != 'p' && Time > 0);
             system("cls");
+            Beep(400, 500);
             draw_name();
             system("cls");
             ra[5].point = a;
             rerankscore();
+            scoreboardwrite();
             play = false;
         }
     }

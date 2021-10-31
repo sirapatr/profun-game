@@ -10,6 +10,7 @@ typedef struct {
 extern RANKING ra[6];
 void rerankscore();
 void scoreboard();
+void scoreboardwrite();
 
 #endif
 #pragma once
