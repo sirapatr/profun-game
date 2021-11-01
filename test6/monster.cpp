@@ -8,9 +8,9 @@ MONS m[6];
 void spawn_monster() {
     for (int i = 0; i < 5; i++) {
         while (!m[i].monlife) {
-            m[i].y = rand() %(ROW-2) + 4;
-            m[i].x = rand() %(COL-2) + 5;
-            if (map[m[i].y][m[i].x] != ' ' ) {
+            m[i].y = rand() %(ROW-6) + 4;
+            m[i].x = rand() %(COL-6) + 5;
+            if (map[m[i].y][m[i].x] == ' ' ) {
                 setcolor(2, 0);
                 draw_mon(m[i].x, m[i].y);
                 m[i].monlife = true;
@@ -57,7 +57,7 @@ void mon_moveToPy(int i,int x,int y) {
         m[i].diry = 0;
         }
 
-    if (m[i].diry != 0 && (map[m[i].y + m[i].diry][m[i].x] == ' ' || map[m[i].y + m[i].diry][m[i].x] == 'P')){
+    if (m[i].diry != 0 && map[m[i].y + m[i].diry][m[i].x] == ' '){
         m[i].y += m[i].diry;
     }
     else {
@@ -71,7 +71,7 @@ void mon_moveToPy(int i,int x,int y) {
             m[i].dirx = 0;
         }
     }
-    if (map[m[i].y][m[i].x + m[i].dirx] == ' ' || map[m[i].y][m[i].x + m[i].dirx] != 'P') {
+    if (map[m[i].y][m[i].x + m[i].dirx] == ' ') {
         m[i].x += m[i].dirx;
     }
 
@@ -93,7 +93,7 @@ void mon_moveToPx(int i, int x, int y) {
         m[i].dirx = 0;
     }
 
-    if (m[i].dirx != 0 && ( map[m[i].y][m[i].x + m[i].dirx] == ' ' || map[m[i].y][m[i].x + m[i].dirx] == 'P')) {
+    if (m[i].dirx != 0 &&  map[m[i].y][m[i].x + m[i].dirx] == ' ') {
         m[i].x += m[i].dirx;
     }
     else {
@@ -107,7 +107,7 @@ void mon_moveToPx(int i, int x, int y) {
             m[i].diry = 0;
         }
     }
-    if (map[m[i].y + m[i].diry][m[i].x] != ' ' || map[m[i].y + m[i].diry][m[i].x] == 'P') {
+    if (map[m[i].y + m[i].diry][m[i].x] != ' ') {
         m[i].y += m[i].diry;
     }
 
@@ -136,7 +136,7 @@ void mon_moveTolmY(int i, int x, int y) {
 
 void mon_move(int i,int x ,int y) {
     del_mon(m[i].x, m[i].y);
-    if(map[m[i].y+ m[i].diry][m[i].x] == ' ' || map[m[i].y + m[i].diry][m[i].x] != 'P') {
+    if(map[m[i].y+ m[i].diry][m[i].x] == ' ') {
         m[i].y += m[i].diry;
     }
     else {

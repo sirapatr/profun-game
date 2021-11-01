@@ -75,6 +75,7 @@ int main()
             }
             draw_score(a);
             draw_Time(Time);
+            draw_skill(0);
             spawn_monster();
 
             do {
@@ -96,13 +97,14 @@ int main()
                     if (ch == 'd' && map[y][x + 1] != '#') {
                         Del_player(x, y); draw_player(++x, y);
                     }
-                    if (ch == 'e' && w[0].have) {
+                    if (ch == 'e' && !w[0].isUse) {
                         draw_wall(0, x, y);
+                        w[0].isUse = true;
+                        draw_skill(0);
                     }
                     fflush(stdin);
                     if (map[y][x] == 'O') {
                         a++;
-                        re_wall(0,a);
                         Time += 100;
                         map[y][x] = ' ';
                         if (a % 10 == 0 && foodcount > 1 ) {
@@ -116,6 +118,10 @@ int main()
                             del_wall(0);
                         }
                         draw_score(a);
+                        if (a % 6 == 5 && w[0].isUse) {
+                            w[0].isUse = false;
+                            draw_skill(0);
+                        }
                     }
 
                     if (map[y][x] == 'D') {
@@ -124,9 +130,6 @@ int main()
                         draw_food();
                     }
 
-                    if (map[y][x] == 'R') {
-                        w[0].have = true;
-                    }
 
                 }
                 if (map[y][x] != 'M') {
