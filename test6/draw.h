@@ -32,6 +32,7 @@ void draw_food();
 void exfood(int a);
 void draw_morefood();
 
+void howToMove();
 void draw_menu();
 void draw_point(int x, int y);
 void Del_point(int x, int y);

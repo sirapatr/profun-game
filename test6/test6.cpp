@@ -4,8 +4,11 @@
 #include "score.h"
 #include "monster.h"
 
+
 int main()
 {
+    //setConsole(screen_x, screen_y);
+
     char ch = ' ';
     setcursor(0);
     srand(time(NULL));
@@ -13,32 +16,27 @@ int main()
 
     bool start = false;
     bool play = true;
-    bool board = false;
 
     while(!start){
 
         //menu
         draw_menu();
-        draw_point(47, 5);
+        draw_point(57, 5);
         do {
             if (_kbhit()) {
                 ch = _getch();
                 if (ch == 'w') {
-                    draw_point(47,5);
-                    Del_point(50, 6);
+                    draw_point(57,5);
+                    Del_point(60, 6);
                     play = true;
-                    board = false;
                 }
                 if (ch == 's') {
-                    draw_point(50, 6);
-                    Del_point(47, 5);
+                    draw_point(60, 6);
+                    Del_point(57, 5);
                     play = false;
-                    board = true;
                 }
-                if (ch == ' ') {
-                    if (play || board) {
+                if (ch == ' ') {                  
                         break;
-                    }
                 }
                 if (ch == 'x') {
                     start = true;
@@ -51,22 +49,15 @@ int main()
         system("cls");
 
         //scoreboard
-        while(board) {
-            Darw_scoreboard();
-            do {
-                if (_kbhit()) {
-                    ch = _getch();
-                    if (ch == ' ') {
-                        board = false;
-                        system("cls");
-                    }
-                }
-            } while (ch != ' ');
+        if(!play) {
+            startscoreboard();
+            play = true;
         }
     
     
         //gameplay
-        while (play) {
+        else {
+            howToMove();
             int x = 1, y = 1, a = 0, Time = 300, foodcount = 10;
             make_map();
             draw_player(x, y);
@@ -129,7 +120,6 @@ int main()
                         map[y][x] = ' ';
                         draw_food();
                     }
-
 
                 }
                 if (map[y][x] != 'M') {

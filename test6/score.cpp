@@ -1,5 +1,6 @@
 #include "fuc.h"
 #include "score.h"
+#include "draw.h"
 
 RANKING ra[6];
 
@@ -47,4 +48,17 @@ void rerankscore() {
 
     }
 
+}
+
+void startscoreboard() {
+    char ch = 'r';
+    Darw_scoreboard();
+    do {
+        if (_kbhit()) {
+            ch = _getch();
+            if (ch == ' ') {
+                system("cls");
+            }
+        }
+    } while (ch != ' ');
 }

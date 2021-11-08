@@ -1,5 +1,5 @@
+test2 56
+test3 41
 ss 20
 w 19
 dd 17
-test1 11
-ds 6

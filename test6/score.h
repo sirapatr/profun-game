@@ -11,6 +11,8 @@ extern RANKING ra[6];
 void rerankscore();
 void scoreboard();
 void scoreboardwrite();
+void startscoreboard();
+
 
 #endif
 #pragma once

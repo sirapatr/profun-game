@@ -137,27 +137,55 @@ void draw_morefood() {
 }
 
 void exfood(int a) {
-    int goodexf = rand() % 40 + 1;
+    int goodexf = rand() % 30 + 1;
     if (a % goodexf == 0) {
         draw_morefood();
     }
 }
 
+//
+
+void howToMove() {
+    gotoxy(52, 3);
+    printf("Tester");
+    gotoxy(45, 5);
+    printf("press w to move up");
+    gotoxy(45, 7);
+    printf("press a to move left");
+    gotoxy(45, 9);
+    printf("press s to move down");
+    gotoxy(45, 11);
+    printf("press d to move right");
+    gotoxy(45, 13);
+    printf("press e to use skills");
+    char ch = 'd';
+    do {
+        if (_kbhit()) {
+            ch = _getch();
+            if (ch == ' ') {
+                system("cls");
+            }
+        }
+    } while (ch != ' ');
+}
+
 //menu
 
 void draw_menu() {
-    gotoxy(42, 3);
+    gotoxy(52, 3);
     printf("Tester");
-    gotoxy(42, 5);
+    gotoxy(52, 5);
     printf("start");
-    gotoxy(40, 6);
+    gotoxy(50, 6);
     printf("scoreBroad");
 }
 
 void draw_name() {
-    gotoxy(40, 3);
+    gotoxy(50, 3);
     printf("Tester");
-    gotoxy(30, 5);
+    gotoxy(39, 7);
+    printf("press Enter when done");
+    gotoxy(39, 5);
     printf("type your name ");
     scanf("%s",ra[5].name);
 }
